@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TerraGuard - Advanced Panic & Disaster Management</title>
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+</head>
+<body>
+
+    <div class="phone-frame">
+        
+        <!-- SCREEN 1: Home / Panic Alert Initial View -->
+        <div class="app-screen active" id="screen-panic">
+            <div class="screen-header">
+                <button class="icon-btn" onclick="switchScreen('screen-emergency')"><i class="fa-solid fa-chevron-left"></i></button>
+                <div class="screen-title">Panic Alert</div>
+                <div class="header-profile">
+                    <div class="notification-badge"><i class="fa-solid fa-bell"></i></div>
+                    <div class="avatar"><i class="fa-solid fa-user"></i></div>
+                </div>
+            </div>
+
+            <div class="screen-body">
+                <div class="instruction-text">
+                    <h2>Are You In Danger?</h2>
+                    <p>Press the button below, help will reach you soon</p>
+                </div>
+
+                <div class="sos-container" onclick="switchScreen('screen-sos-active')">
+                    <div class="ripple ripple-1"></div>
+                    <div class="ripple ripple-2"></div>
+                    <div class="ripple ripple-3"></div>
+                    <button class="sos-main-btn">
+                        <span>SOS</span>
+                        <div class="btn-glow"></div>
+                    </button>
+                </div>
+
+                <div class="location-card">
+                    <div class="loc-icon"><i class="fa-solid fa-location-crosshairs"></i></div>
+                    <div class="location-info">
+                        <h4>Current Location <span class="live-dot"></span></h4>
+                        <p>Sector 4, Hilltop Ridge, Coimbatore</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BOTTOM NAVIGATION -->
+            <div class="bottom-nav">
+                <button class="nav-btn" onclick="switchScreen('screen-map')">
+                    <i class="fa-solid fa-map"></i><span>Map</span>
+                </button>
+                <button class="nav-btn" onclick="switchScreen('screen-message')">
+                    <i class="fa-solid fa-comment-dots"></i><span>Message</span>
+                </button>
+                <button class="nav-btn active" onclick="switchScreen('screen-panic')">
+                    <i class="fa-solid fa-triangle-exclamation"></i><span>Panic Alert</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- SCREEN 2: Choose Emergency View -->
+        <div class="app-screen" id="screen-emergency">
+            <div class="screen-header">
+                <button class="icon-btn" onclick="switchScreen('screen-panic')"><i class="fa-solid fa-chevron-left"></i></button>
+                <div class="screen-title">Panic Alert</div>
+                <div class="header-profile">
+                    <div class="notification-badge"><i class="fa-solid fa-bell"></i></div>
+                    <div class="avatar"><i class="fa-solid fa-user"></i></div>
+                </div>
+            </div>
+
+            <div class="screen-body">
+                <div style="width: 100%;">
+                    <div class="instruction-text" style="text-align: left; margin-bottom: 12px;">
+                        <h2 style="font-size: 18px; color: #f8fafc;">Choose the emergency</h2>
+                    </div>
+
+                    <div class="emergency-grid">
+                        <div class="emergency-box" onclick="triggerEmergencyDetail('Fire')">
+                            <div class="box-icon fire"><i class="fa-solid fa-fire"></i></div>
+                            <span>Fire</span>
+                        </div>
+                        <div class="emergency-box" onclick="triggerEmergencyDetail('Flood')">
+                            <div class="box-icon flood"><i class="fa-solid fa-water"></i></div>
+                            <span>Flood</span>
+                        </div>
+                        <div class="emergency-box" onclick="triggerEmergencyDetail('Earthquake')">
+                            <div class="box-icon quake"><i class="fa-solid fa-mountain"></i></div>
+                            <span>Earthquake</span>
+                        </div>
+                        <div class="emergency-box" onclick="triggerEmergencyDetail('Crime')">
+                            <div class="box-icon crime"><i class="fa-solid fa-shield-halved"></i></div>
+                            <span>Crime</span>
+                        </div>
+                        <div class="emergency-box" onclick="triggerEmergencyDetail('Accident')">
+                            <div class="box-icon accident"><i class="fa-solid fa-car-burst"></i></div>
+                            <span>Accident</span>
+                        </div>
+                        <div class="emergency-box" onclick="triggerEmergencyDetail('Landslide')">
+                            <div class="box-icon landslide"><i class="fa-solid fa-house-chimney-crack"></i></div>
+                            <span>Landslide</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="width: 100%;">
+                    <div class="active-alert-bar">
+                        <div class="active-alert-left">
+                            <i class="fa-solid fa-triangle-exclamation"></i>
+                            <span id="active-emergency-text">Landslide emergency active</span>
+                        </div>
+                        <button class="off-btn" onclick="switchScreen('screen-panic')">Off</button>
+                    </div>
+
+                    <div class="location-card">
+                        <div class="loc-icon"><i class="fa-solid fa-location-crosshairs"></i></div>
+                        <div class="location-info">
+                            <h4>Current Location <span class="live-dot"></span></h4>
+                            <p>Sector 4, Hilltop Ridge, Coimbatore</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bottom-nav">
+                <button class="nav-btn" onclick="switchScreen('screen-map')">
+                    <i class="fa-solid fa-map"></i><span>Map</span>
+                </button>
+                <button class="nav-btn" onclick="switchScreen('screen-message')">
+                    <i class="fa-solid fa-comment-dots"></i><span>Message</span>
+                </button>
+                <button class="nav-btn active" onclick="switchScreen('screen-emergency')">
+                    <i class="fa-solid fa-triangle-exclamation"></i><span>Panic Alert</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- SCREEN 3: SOS Active View -->
+        <div class="app-screen red-bg" id="screen-sos-active">
+            <div class="screen-header">
+                <button class="icon-btn white-text" onclick="switchScreen('screen-panic')"><i class="fa-solid fa-chevron-left"></i></button>
+                <div class="screen-title" style="opacity: 0;">Panic Alert</div>
+                <div class="header-profile">
+                    <div class="avatar white-avatar"><i class="fa-solid fa-user"></i></div>
+                </div>
+            </div>
+
+            <div class="screen-body">
+                <div class="instruction-text white-text-block">
+                    <h2>Help is on the way!</h2>
+                    <p>Rescue teams dispatched to your coordinates</p>
+                </div>
+
+                <div class="sos-container" onclick="switchScreen('screen-emergency')">
+                    <div class="ripple-white ripple-1"></div>
+                    <div class="ripple-white ripple-2"></div>
+                    <div class="ripple-white ripple-3"></div>
+                    <button class="sos-white-btn">
+                        <span>SOS</span>
+                    </button>
+                </div>
+
+                <div class="location-share-footer">
+                    <i class="fa-solid fa-satellite-dish"></i> Live Location Shared Securely
+                </div>
+            </div>
+
+            <div class="bottom-nav red-nav">
+                <button class="nav-btn white-text" onclick="switchScreen('screen-map')">
+                    <i class="fa-solid fa-map"></i><span>Map</span>
+                </button>
+                <button class="nav-btn white-text" onclick="switchScreen('screen-message')">
+                    <i class="fa-solid fa-comment-dots"></i><span>Message</span>
+                </button>
+                <button class="nav-btn active white-text" onclick="switchScreen('screen-panic')">
+                    <i class="fa-solid fa-triangle-exclamation"></i><span>Panic Alert</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- SCREEN 4: MAP VIEW -->
+        <div class="app-screen" id="screen-map">
+            <div class="screen-header">
+                <button class="icon-btn" onclick="switchScreen('screen-panic')"><i class="fa-solid fa-chevron-left"></i></button>
+                <div class="screen-title" style="color: #f8fafc;">Safe Zones & Radar</div>
+                <div class="header-profile">
+                    <div class="notification-badge"><i class="fa-solid fa-location-dot"></i></div>
+                </div>
+            </div>
+
+            <div class="screen-body-full">
+                <div class="fake-map-view">
+                    <div class="map-radar-pulse"></div>
+                    <div class="map-pin pin-1"><i class="fa-solid fa-house-chimney-medical"></i><span>Relief Camp Alpha (1.2 km)</span></div>
+                    <div class="map-pin pin-2"><i class="fa-solid fa-shield-halved"></i><span>Safe High Ground (850m)</span></div>
+                    <div class="map-user-pin"><i class="fa-solid fa-user"></i><span>You are here</span></div>
+                </div>
+                <div class="map-info-panel">
+                    <h3>Sector 4 Safe Zones</h3>
+                    <p><i class="fa-solid fa-circle-check" style="color: #10b981;"></i> All routes clear of debris flow.</p>
+                    <p><i class="fa-solid fa-triangle-exclamation" style="color: #f59e0b;"></i> Avoid Valley Road due to waterlogging.</p>
+                </div>
+            </div>
+
+            <div class="bottom-nav">
+                <button class="nav-btn active" onclick="switchScreen('screen-map')">
+                    <i class="fa-solid fa-map"></i><span>Map</span>
+                </button>
+                <button class="nav-btn" onclick="switchScreen('screen-message')">
+                    <i class="fa-solid fa-comment-dots"></i><span>Message</span>
+                </button>
+                <button class="nav-btn" onclick="switchScreen('screen-panic')">
+                    <i class="fa-solid fa-triangle-exclamation"></i><span>Panic Alert</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- SCREEN 5: MESSAGE VIEW -->
+        <div class="app-screen" id="screen-message">
+            <div class="screen-header">
+                <button class="icon-btn" onclick="switchScreen('screen-panic')"><i class="fa-solid fa-chevron-left"></i></button>
+                <div class="screen-title" style="color: #f8fafc;">Emergency Broadcasts</div>
+                <div class="header-profile">
+                    <div class="notification-badge"><i class="fa-solid fa-bell"></i></div>
+                </div>
+            </div>
+
+            <div class="screen-body-full" style="padding: 15px 20px; overflow-y: auto;">
+                <div class="msg-card">
+                    <div class="msg-time">Today, 10:42 AM</div>
+                    <h4>NDRF District Command</h4>
+                    <p>Heavy rainfall warning extended for hill sectors. Move to designated high grounds immediately if alerted.</p>
+                </div>
+                <div class="msg-card">
+                    <div class="msg-time">Today, 09:15 AM</div>
+                    <h4>Sector 4 Relief Center</h4>
+                    <p>Emergency medical supplies and food rations are now active at Plot #42, Hilltop Ridge.</p>
+                </div>
+                <div class="msg-card">
+                    <div class="msg-time">Yesterday</div>
+                    <h4>Automated Weather Alert</h4>
+                    <p>Soil saturation level reached threshold critical limit. Landslide risk index: Moderate-High.</p>
+                </div>
+            </div>
+
+            <div class="bottom-nav">
+                <button class="nav-btn" onclick="switchScreen('screen-map')">
+                    <i class="fa-solid fa-map"></i><span>Map</span>
+                </button>
+                <button class="nav-btn active" onclick="switchScreen('screen-message')">
+                    <i class="fa-solid fa-comment-dots"></i><span>Message</span>
+                </button>
+                <button class="nav-btn" onclick="switchScreen('screen-panic')">
+                    <i class="fa-solid fa-triangle-exclamation"></i><span>Panic Alert</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- POPUP MODAL -->
+        <div class="modal" id="infoModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 id="modalTitle">Emergency Details</h3>
+                    <button class="close-modal" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+                <p id="modalBody" style="font-size: 13px; color: #94a3b8; line-height: 1.6;"></p>
+                <button class="modal-sos-trigger" onclick="confirmEmergencySOS()">Dispatch Rescue Unit</button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Custom JS -->
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+
+
+
+
